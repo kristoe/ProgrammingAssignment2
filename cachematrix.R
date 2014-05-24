@@ -1,3 +1,6 @@
+## Eric J. Kristoff
+## kristoe@yahoo.com
+
 ## Put comments here that give an overall description of what your
 ## functions do
 
