@@ -1,23 +1,32 @@
 ## Eric J. Kristoff
 ## kristoe@yahoo.com
 
-## Put comments here that give an overall description of what your
-## functions do
+## NOTE : the overall approach required by the assignment works, but is bad software engineering
+## form, by creating coupling between the two functions.  Additionally, the variable naming conventions
+## in the sample code overloaded variable names, creating unnecessary confusion, which would
+## make the code more difficult to maintain later.
 
-## Write a short comment describing this function
 
 makeCacheMatrix <- function(x = matrix()) {
-  m <- NULL
+  ## this function creates a matrix object that has the ability to cache itself
+  
+  matrixToReturn <- NULL
   set <- function(y) {
+    ## internal subfunction to manually set the matrix
     x <<- y
-    m <<- NULL
+    matrixToReturn <<- NULL
   }
-  get <- function() x
+  get <- function() {
+    ## internal subfunction to retrieve the matrix
+    x
+  }
   setInverse <- function(toSolve) {
-    m <<- toSolve
+    ## internal subfunction to set the inverted matrix
+    matrixToReturn <<- toSolve
   }
   getInverse <- function() {
-    m
+    ## internal subfunction to retrieve th
+    matrixToReturn
   }
   list(set = set, get = get,
        setInverse = setInverse,
@@ -25,17 +34,16 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
-
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
-  m <- x$getInverse()
-  if(!is.null(m)) {
+  ## thie function returns a matrix that is the inverse of parameter 'x'
+  inverseToReturn <- x$getInverse()
+  if(!is.null(inverseToReturn)) {
     message("getting cached matrix data")
-    return(m)
+    return(inverseToReturn)
   }
+  ## if the member variable inverseToReturn is null, then we need to find it
   data <- x$get()
-  m <- solve(data, ...)
-  x$setInverse(m)
-  m
+  inverseToReturn <- solve(data, ...)
+  x$setInverse(inverseToReturn)
+  inverseToReturn
 }  
