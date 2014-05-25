@@ -1,11 +1,7 @@
 ## Eric J. Kristoff
 ## kristoe@yahoo.com
 
-## NOTE : the overall approach required by the assignment works, but is bad software engineering
-## form, by creating coupling between the two functions.  Additionally, the variable naming conventions
-## in the sample code overloaded variable names, creating unnecessary confusion, which would
-## make the code more difficult to maintain later.
-
+## set of functions for R Programming course, week #3
 
 makeCacheMatrix <- function(x = matrix()) {
   ## this function creates a matrix object that has the ability to cache itself
@@ -36,8 +32,10 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
   ## thie function returns a matrix that is the inverse of parameter 'x'
+  
   inverseToReturn <- x$getInverse()
   if(!is.null(inverseToReturn)) {
+    ## if the member variable inverseToReturn is NOT null, then just use what we already have
     message("getting cached matrix data")
     return(inverseToReturn)
   }
